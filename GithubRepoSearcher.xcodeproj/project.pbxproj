@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CF3BBD2C2573BBCC00D8F410 /* Repositories.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3BBD2B2573BBCC00D8F410 /* Repositories.swift */; };
+		CF3BBD3D2573BEC700D8F410 /* SearchRepositoryUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3BBD3C2573BEC700D8F410 /* SearchRepositoryUseCase.swift */; };
+		CF3BBD432573DF5500D8F410 /* RepositoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3BBD412573DF5500D8F410 /* RepositoryCell.swift */; };
+		CF3BBD442573DF5500D8F410 /* RepositoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF3BBD422573DF5500D8F410 /* RepositoryCell.xib */; };
 		CFBD13452573AB6000F7EF6B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBD13442573AB6000F7EF6B /* AppDelegate.swift */; };
 		CFBD13472573AB6000F7EF6B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBD13462573AB6000F7EF6B /* SceneDelegate.swift */; };
 		CFBD13492573AB6000F7EF6B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBD13482573AB6000F7EF6B /* ViewController.swift */; };
@@ -15,6 +19,12 @@
 		CFBD13512573AB6100F7EF6B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFBD134F2573AB6100F7EF6B /* LaunchScreen.storyboard */; };
 		CFBD135C2573AB6100F7EF6B /* GithubRepoSearcherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBD135B2573AB6100F7EF6B /* GithubRepoSearcherTests.swift */; };
 		CFBD13672573AB6100F7EF6B /* GithubRepoSearcherUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBD13662573AB6100F7EF6B /* GithubRepoSearcherUITests.swift */; };
+		CFBD13792573ABE400F7EF6B /* RepoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBD13772573ABE400F7EF6B /* RepoListViewController.swift */; };
+		CFBD137A2573ABE400F7EF6B /* RepoListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFBD13782573ABE400F7EF6B /* RepoListViewController.xib */; };
+		CFEA493E2573ADFF00976A51 /* RepoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFEA493C2573ADFF00976A51 /* RepoDetailViewController.swift */; };
+		CFEA493F2573ADFF00976A51 /* RepoDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFEA493D2573ADFF00976A51 /* RepoDetailViewController.xib */; };
+		CFEA49442573AFCE00976A51 /* SearchClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFEA49432573AFCE00976A51 /* SearchClient.swift */; };
+		CFEA49492573B04C00976A51 /* RepoListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFEA49482573B04C00976A51 /* RepoListViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +45,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CF3BBD2B2573BBCC00D8F410 /* Repositories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repositories.swift; sourceTree = "<group>"; };
+		CF3BBD3C2573BEC700D8F410 /* SearchRepositoryUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRepositoryUseCase.swift; sourceTree = "<group>"; };
+		CF3BBD412573DF5500D8F410 /* RepositoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryCell.swift; sourceTree = "<group>"; };
+		CF3BBD422573DF5500D8F410 /* RepositoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RepositoryCell.xib; sourceTree = "<group>"; };
 		CFBD13412573AB6000F7EF6B /* GithubRepoSearcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GithubRepoSearcher.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFBD13442573AB6000F7EF6B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CFBD13462573AB6000F7EF6B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -49,6 +63,12 @@
 		CFBD13622573AB6100F7EF6B /* GithubRepoSearcherUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GithubRepoSearcherUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFBD13662573AB6100F7EF6B /* GithubRepoSearcherUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubRepoSearcherUITests.swift; sourceTree = "<group>"; };
 		CFBD13682573AB6100F7EF6B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CFBD13772573ABE400F7EF6B /* RepoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoListViewController.swift; sourceTree = "<group>"; };
+		CFBD13782573ABE400F7EF6B /* RepoListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RepoListViewController.xib; sourceTree = "<group>"; };
+		CFEA493C2573ADFF00976A51 /* RepoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoDetailViewController.swift; sourceTree = "<group>"; };
+		CFEA493D2573ADFF00976A51 /* RepoDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RepoDetailViewController.xib; sourceTree = "<group>"; };
+		CFEA49432573AFCE00976A51 /* SearchClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchClient.swift; sourceTree = "<group>"; };
+		CFEA49482573B04C00976A51 /* RepoListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoListViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +96,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CF3BBD2A2573BBAC00D8F410 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				CF3BBD2B2573BBCC00D8F410 /* Repositories.swift */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		CF3BBD362573BE7900D8F410 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				CFEA493D2573ADFF00976A51 /* RepoDetailViewController.xib */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		CF3BBD372573BE8900D8F410 /* Client */ = {
+			isa = PBXGroup;
+			children = (
+				CFEA49432573AFCE00976A51 /* SearchClient.swift */,
+			);
+			path = Client;
+			sourceTree = "<group>";
+		};
+		CF3BBD3B2573BEB500D8F410 /* UseCase */ = {
+			isa = PBXGroup;
+			children = (
+				CF3BBD3C2573BEC700D8F410 /* SearchRepositoryUseCase.swift */,
+			);
+			path = UseCase;
+			sourceTree = "<group>";
+		};
 		CFBD13382573AB6000F7EF6B = {
 			isa = PBXGroup;
 			children = (
@@ -99,6 +151,11 @@
 		CFBD13432573AB6000F7EF6B /* GithubRepoSearcher */ = {
 			isa = PBXGroup;
 			children = (
+				CF3BBD3B2573BEB500D8F410 /* UseCase */,
+				CF3BBD372573BE8900D8F410 /* Client */,
+				CF3BBD362573BE7900D8F410 /* ViewModel */,
+				CF3BBD2A2573BBAC00D8F410 /* Entity */,
+				CFBD13852573ABF800F7EF6B /* View */,
 				CFBD13442573AB6000F7EF6B /* AppDelegate.swift */,
 				CFBD13462573AB6000F7EF6B /* SceneDelegate.swift */,
 				CFBD13482573AB6000F7EF6B /* ViewController.swift */,
@@ -126,6 +183,19 @@
 				CFBD13682573AB6100F7EF6B /* Info.plist */,
 			);
 			path = GithubRepoSearcherUITests;
+			sourceTree = "<group>";
+		};
+		CFBD13852573ABF800F7EF6B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CFBD13772573ABE400F7EF6B /* RepoListViewController.swift */,
+				CFBD13782573ABE400F7EF6B /* RepoListViewController.xib */,
+				CFEA493C2573ADFF00976A51 /* RepoDetailViewController.swift */,
+				CFEA49482573B04C00976A51 /* RepoListViewModel.swift */,
+				CF3BBD412573DF5500D8F410 /* RepositoryCell.swift */,
+				CF3BBD422573DF5500D8F410 /* RepositoryCell.xib */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -231,8 +301,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CFBD137A2573ABE400F7EF6B /* RepoListViewController.xib in Resources */,
 				CFBD13512573AB6100F7EF6B /* LaunchScreen.storyboard in Resources */,
 				CFBD134E2573AB6100F7EF6B /* Assets.xcassets in Resources */,
+				CF3BBD442573DF5500D8F410 /* RepositoryCell.xib in Resources */,
+				CFEA493F2573ADFF00976A51 /* RepoDetailViewController.xib in Resources */,
 				CFBD134C2573AB6000F7EF6B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -258,8 +331,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CFBD13792573ABE400F7EF6B /* RepoListViewController.swift in Sources */,
 				CFBD13492573AB6000F7EF6B /* ViewController.swift in Sources */,
+				CFEA493E2573ADFF00976A51 /* RepoDetailViewController.swift in Sources */,
+				CF3BBD2C2573BBCC00D8F410 /* Repositories.swift in Sources */,
+				CFEA49492573B04C00976A51 /* RepoListViewModel.swift in Sources */,
+				CF3BBD432573DF5500D8F410 /* RepositoryCell.swift in Sources */,
+				CFEA49442573AFCE00976A51 /* SearchClient.swift in Sources */,
 				CFBD13452573AB6000F7EF6B /* AppDelegate.swift in Sources */,
+				CF3BBD3D2573BEC700D8F410 /* SearchRepositoryUseCase.swift in Sources */,
 				CFBD13472573AB6000F7EF6B /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
