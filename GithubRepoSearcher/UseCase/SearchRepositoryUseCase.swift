@@ -21,7 +21,6 @@ final class SearchRepositoryUseCaseImpl: SearchRepositoryUseCase {
     private var client = SearchClientImpl()
 
     func searchRepository(word: String) -> AnyPublisher<Repositories, Error> {
-//        guard let client = client else { fatalError("Client is nil") }
         return client.request(Repositories.self, word: word)
     }
 }

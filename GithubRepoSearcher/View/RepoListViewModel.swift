@@ -13,7 +13,7 @@ final class RepoListViewModel {
     // TODO: 本当はこっちを使いたい
 //    private let useCase: SearchRepositoryUseCase
 
-    // TODO: これは邪道　DI方法がまずい
+    // TODO: これは邪道　DI方法がまずい Protocolの意味ないんご
     private var useCase = SearchRepositoryUseCaseImpl()
 
     private var cancellables = Set<AnyCancellable>()
@@ -32,12 +32,14 @@ final class RepoListViewModel {
 
     private func requestRepository(word: String) {
         useCase.searchRepository(word: word).print()
-            .sink { completion in
+            .sink {[weak self] completion in
+                guard let self = self else { return }
                 switch completion {
                 case .finished:
                     print("RepoListViewModel: requestRepository: success")
                 case .failure(let error):
-                    print("RepoListViewModel: requestRepository: failure", error)
+                    self.repositories = []
+                    print("RepoListViewModel: requestRepository: failure", error.localizedDescription)
                 }
             } receiveValue: {[weak self] value in
                 guard let self = self else { return }

@@ -10,15 +10,20 @@ import Combine
 
 final class RepoListViewController: UIViewController {
 
+    enum Section: CaseIterable {
+        case main
+    }
+
     @IBOutlet private weak var searchBar: UISearchBar!
     @IBOutlet private weak var tableView: UITableView! {
         didSet {
-            tableView.dataSource = self
             tableView.register(UINib(nibName: "RepositoryCell", bundle: nil), forCellReuseIdentifier: "RepositoryCell")
         }
     }
 
     private var cancellables = Set<AnyCancellable>()
+    private var dataSource: UITableViewDiffableDataSource<Section, Repository>! = nil
+    private var snapShot: NSDiffableDataSourceSnapshot<Section, Repository>!
 
     private let viewModel: RepoListViewModel
 
@@ -34,6 +39,8 @@ final class RepoListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        prepareView()
+
         viewModel.onAppear()
         bind()
     }
@@ -48,22 +55,29 @@ final class RepoListViewController: UIViewController {
                 }
             }.store(in: &cancellables)
 
-        viewModel.$repositories
-            .receive(on: RunLoop.main)
+        viewModel.$repositories.dropFirst()
+            .receive(on: RunLoop.main).print()
             .sink {[weak self] _ in
-                self?.tableView.reloadData()
+                guard let self = self else { return }
+                // ここで毎回初期化してあげないと、更新されない Appleの公式プロジェクトもこうしてるから正しいのかも
+                self.snapShot = NSDiffableDataSourceSnapshot<Section, Repository>()
+                self.snapShot.appendSections(Section.allCases)
+                self.snapShot.appendItems(self.viewModel.repositories, toSection: .main)
+                self.dataSource.apply(self.snapShot, animatingDifferences: true)
             }.store(in: &cancellables)
     }
-}
 
-extension RepoListViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.repositories.count
-    }
+    private func prepareView() {
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "RepositoryCell", for: indexPath) as? RepositoryCell else { fatalError("No implemented") }
-        cell.configureCell(item: viewModel.repositories[indexPath.row])
-        return cell
+        dataSource = UITableViewDiffableDataSource<Section, Repository>(tableView: tableView, cellProvider: {[weak self] (tableView, indexPath, repository) -> UITableViewCell? in
+            guard let self = self else { fatalError("No implemented") }
+            let cell = tableView.dequeueReusableCell(withIdentifier: "RepositoryCell", for: indexPath) as? RepositoryCell
+            cell?.configureCell(item: self.viewModel.repositories[indexPath.row])
+            return cell
+        })
+
+        snapShot = NSDiffableDataSourceSnapshot<Section, Repository>()
+        snapShot.appendSections(Section.allCases)
+        dataSource.apply(snapShot, animatingDifferences: true)
     }
 }
