@@ -18,9 +18,9 @@ final class SearchRepositoryUseCaseImpl: SearchRepositoryUseCase {
 //    private var client: SearchClient?
 
     // TODO: これは邪道　DI方法がまずい
-    private var client = SearchClientImpl()
+    private let apiClient = APIClientImpl()
 
     func searchRepository(word: String) -> AnyPublisher<Repositories, Error> {
-        return client.request(Repositories.self, word: word)
+        return apiClient.request(GithubAPI.searchRepo(word: word))
     }
 }

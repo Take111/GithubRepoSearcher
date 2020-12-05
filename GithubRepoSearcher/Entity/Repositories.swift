@@ -25,10 +25,6 @@ struct Repository: Codable, Hashable {
     let isPrivate: Bool
     let stargersCount: Int
 
-    static func == (lhs: Repository, rhs: Repository) -> Bool {
-        return lhs.id == rhs.id
-    }
-
     enum CodingKeys: String, CodingKey {
         case id
         case name

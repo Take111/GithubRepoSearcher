@@ -17,6 +17,7 @@ final class RepoListViewController: UIViewController {
     @IBOutlet private weak var searchBar: UISearchBar!
     @IBOutlet private weak var tableView: UITableView! {
         didSet {
+            tableView.delegate = self
             tableView.register(UINib(nibName: "RepositoryCell", bundle: nil), forCellReuseIdentifier: "RepositoryCell")
         }
     }
@@ -39,7 +40,9 @@ final class RepoListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        prepareView()
+        title = "検索"
+
+        prepareTableView()
 
         viewModel.onAppear()
         bind()
@@ -59,7 +62,7 @@ final class RepoListViewController: UIViewController {
             .receive(on: RunLoop.main).print()
             .sink {[weak self] _ in
                 guard let self = self else { return }
-                // ここで毎回初期化してあげないと、更新されない Appleの公式プロジェクトもこうしてるから正しいのかも
+                // ここで毎回初期化してあげないと、更新されない Appleのサンプルプロジェクトもこうしてるからとりあえずこうする
                 self.snapShot = NSDiffableDataSourceSnapshot<Section, Repository>()
                 self.snapShot.appendSections(Section.allCases)
                 self.snapShot.appendItems(self.viewModel.repositories, toSection: .main)
@@ -67,7 +70,7 @@ final class RepoListViewController: UIViewController {
             }.store(in: &cancellables)
     }
 
-    private func prepareView() {
+    private func prepareTableView() {
 
         dataSource = UITableViewDiffableDataSource<Section, Repository>(tableView: tableView, cellProvider: {[weak self] (tableView, indexPath, repository) -> UITableViewCell? in
             guard let self = self else { fatalError("No implemented") }
@@ -79,5 +82,13 @@ final class RepoListViewController: UIViewController {
         snapShot = NSDiffableDataSourceSnapshot<Section, Repository>()
         snapShot.appendSections(Section.allCases)
         dataSource.apply(snapShot, animatingDifferences: true)
+    }
+}
+
+extension RepoListViewController: UITableViewDelegate {
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+       let vc = RepoDetailViewController(name: viewModel.repositories[indexPath.row].name)
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
