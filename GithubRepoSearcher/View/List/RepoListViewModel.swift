@@ -9,17 +9,16 @@ import Foundation
 import Combine
 
 final class RepoListViewModel {
-
-    // TODO: 本当はこっちを使いたい
-//    private let useCase: SearchRepositoryUseCase
-
-    // TODO: これは邪道　DI方法がまずい Protocolの意味ないんご
-    private var useCase = SearchRepositoryUseCaseImpl()
-
     private var cancellables = Set<AnyCancellable>()
 
     @Published var repositories = [Repository]()
     @Published var searchText = ""
+
+    private let useCase: SearchRepositoryUseCase
+
+    init(useCase: SearchRepositoryUseCase) {
+        self.useCase = useCase
+    }
 
     func onAppear() {
         $searchText

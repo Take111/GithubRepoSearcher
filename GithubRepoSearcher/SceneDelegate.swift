@@ -16,7 +16,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
         self.window = window
-        let vc = RepoListViewController(viewModel: RepoListViewModel())
+        let vc = RepoListViewController(viewModel: RepoListViewModel(useCase: SearchRepositoryUseCaseImpl()))
         let navigation = UINavigationController(rootViewController: vc)
         window.rootViewController = navigation
         window.makeKeyAndVisible()

@@ -14,10 +14,6 @@ protocol SearchRepositoryUseCase {
 
 final class SearchRepositoryUseCaseImpl: SearchRepositoryUseCase {
 
-    // TODO: 本当はこっちを使いたい
-//    private var client: SearchClient?
-
-    // TODO: これは邪道　DI方法がまずい
     private let apiClient = APIClientImpl()
 
     func searchRepository(word: String) -> AnyPublisher<Repositories, Error> {
