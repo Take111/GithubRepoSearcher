@@ -142,13 +142,13 @@
 			path = List;
 			sourceTree = "<group>";
 		};
-		CF3BBD5D257B5B2E00D8F410 /* Group */ = {
+		CF3BBD5D257B5B2E00D8F410 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
 				CF7D14C9257B5C6000CFA68F /* RepoDetailViewController.swift */,
 				CF7D14CA257B5C6000CFA68F /* RepoDetailViewController.xib */,
 			);
-			path = Group;
+			path = Detail;
 			sourceTree = "<group>";
 		};
 		CFBD13382573AB6000F7EF6B = {
@@ -211,7 +211,7 @@
 		CFBD13852573ABF800F7EF6B /* View */ = {
 			isa = PBXGroup;
 			children = (
-				CF3BBD5D257B5B2E00D8F410 /* Group */,
+				CF3BBD5D257B5B2E00D8F410 /* Detail */,
 				CF3BBD5C257B5B1700D8F410 /* List */,
 			);
 			path = View;
