@@ -51,6 +51,7 @@ final class RepoListViewController: UIViewController {
     private func bind() {
         NotificationCenter.default
             .publisher(for: UISearchTextField.textDidChangeNotification, object: searchBar.searchTextField)
+            .debounce(for: 0.5, scheduler: RunLoop.main)
             .sink {[weak self] notification in
                 guard let self = self else { return }
                 if let textField = notification.object as? UITextField, let text = textField.text {
