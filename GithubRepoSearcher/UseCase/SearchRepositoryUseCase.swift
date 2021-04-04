@@ -8,6 +8,8 @@
 import Foundation
 import Combine
 
+/// @mockable
+
 protocol SearchRepositoryUseCase {
     func searchRepository(word: String) -> AnyPublisher<Repositories, Error>
 }

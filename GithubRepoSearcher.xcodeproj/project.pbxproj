@@ -15,6 +15,7 @@
 		CF3BBD58257B597D00D8F410 /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3BBD57257B597D00D8F410 /* APIRequest.swift */; };
 		CF7D14CB257B5C6000CFA68F /* RepoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7D14C9257B5C6000CFA68F /* RepoDetailViewController.swift */; };
 		CF7D14CC257B5C6000CFA68F /* RepoDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF7D14CA257B5C6000CFA68F /* RepoDetailViewController.xib */; };
+		CFB86A872619B37D009ED470 /* MockResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB86A862619B37D009ED470 /* MockResults.swift */; };
 		CFBD13452573AB6000F7EF6B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBD13442573AB6000F7EF6B /* AppDelegate.swift */; };
 		CFBD13472573AB6000F7EF6B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBD13462573AB6000F7EF6B /* SceneDelegate.swift */; };
 		CFBD13492573AB6000F7EF6B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBD13482573AB6000F7EF6B /* ViewController.swift */; };
@@ -54,6 +55,7 @@
 		CF3BBD57257B597D00D8F410 /* APIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
 		CF7D14C9257B5C6000CFA68F /* RepoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoDetailViewController.swift; sourceTree = "<group>"; };
 		CF7D14CA257B5C6000CFA68F /* RepoDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RepoDetailViewController.xib; sourceTree = "<group>"; };
+		CFB86A862619B37D009ED470 /* MockResults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockResults.swift; sourceTree = "<group>"; };
 		CFBD13412573AB6000F7EF6B /* GithubRepoSearcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GithubRepoSearcher.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFBD13442573AB6000F7EF6B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CFBD13462573AB6000F7EF6B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -151,6 +153,14 @@
 			path = Detail;
 			sourceTree = "<group>";
 		};
+		CFB86A7F2619B1EA009ED470 /* GeneratesCode */ = {
+			isa = PBXGroup;
+			children = (
+				CFB86A862619B37D009ED470 /* MockResults.swift */,
+			);
+			path = GeneratesCode;
+			sourceTree = "<group>";
+		};
 		CFBD13382573AB6000F7EF6B = {
 			isa = PBXGroup;
 			children = (
@@ -193,6 +203,7 @@
 		CFBD135A2573AB6100F7EF6B /* GithubRepoSearcherTests */ = {
 			isa = PBXGroup;
 			children = (
+				CFB86A7F2619B1EA009ED470 /* GeneratesCode */,
 				CFBD135B2573AB6100F7EF6B /* GithubRepoSearcherTests.swift */,
 				CFBD135D2573AB6100F7EF6B /* Info.plist */,
 			);
@@ -224,6 +235,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CFBD136B2573AB6100F7EF6B /* Build configuration list for PBXNativeTarget "GithubRepoSearcher" */;
 			buildPhases = (
+				CFB86A7E2619B0AB009ED470 /* Mockolo */,
 				CFBD133D2573AB6000F7EF6B /* Sources */,
 				CFBD133E2573AB6000F7EF6B /* Frameworks */,
 				CFBD133F2573AB6000F7EF6B /* Resources */,
@@ -345,6 +357,27 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		CFB86A7E2619B0AB009ED470 /* Mockolo */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Mockolo;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which mint >/dev/null; then \n    mint run mockolo -s ./GithubRepoSearcher -d GithubRepoSearcherTests/GeneratesCode/MockResults.swift -i GithubRepoSearcher\nelse\n    echo \"Mockolo is not installed\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		CFBD133D2573AB6000F7EF6B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -368,6 +401,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CFB86A872619B37D009ED470 /* MockResults.swift in Sources */,
 				CFBD135C2573AB6100F7EF6B /* GithubRepoSearcherTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

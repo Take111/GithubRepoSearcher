@@ -30,7 +30,7 @@ final class RepoListViewModel {
     }
 
     private func requestRepository(word: String) {
-        useCase.searchRepository(word: word).print()
+        useCase.searchRepository(word: word)
             .sink {[weak self] completion in
                 guard let self = self else { return }
                 switch completion {
