@@ -55,19 +55,24 @@ final class RepoListViewController: UIViewController {
             .sink {[weak self] notification in
                 guard let self = self else { return }
                 if let textField = notification.object as? UITextField, let text = textField.text {
-                    self.viewModel.searchText = text
+                    self.viewModel.inputs.searchText.send(text)
                 }
             }.store(in: &cancellables)
 
-        viewModel.$repositories.dropFirst()
-            .receive(on: RunLoop.main).print()
-            .sink {[weak self] _ in
+        viewModel.outputs.repositories.dropFirst()
+            .receive(on: RunLoop.main)
+            .sink {[weak self] value in
                 guard let self = self else { return }
                 // ここで毎回初期化してあげないと、更新されない Appleのサンプルプロジェクトもこうしてるからとりあえずこうする
                 self.snapShot = NSDiffableDataSourceSnapshot<Section, Repository>()
                 self.snapShot.appendSections(Section.allCases)
-                self.snapShot.appendItems(self.viewModel.repositories, toSection: .main)
+                self.snapShot.appendItems(value, toSection: .main)
                 self.dataSource.apply(self.snapShot, animatingDifferences: true)
+            }.store(in: &cancellables)
+
+        viewModel.outputs.effect
+            .sink { [weak self] value in
+
             }.store(in: &cancellables)
     }
 
@@ -76,7 +81,7 @@ final class RepoListViewController: UIViewController {
         dataSource = UITableViewDiffableDataSource<Section, Repository>(tableView: tableView, cellProvider: {[weak self] (tableView, indexPath, repository) -> UITableViewCell? in
             guard let self = self else { fatalError("No implemented") }
             let cell = tableView.dequeueReusableCell(withIdentifier: "RepositoryCell", for: indexPath) as? RepositoryCell
-            cell?.configureCell(item: self.viewModel.repositories[indexPath.row])
+            cell?.configureCell(item: repository)
             return cell
         })
 
@@ -89,7 +94,7 @@ final class RepoListViewController: UIViewController {
 extension RepoListViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-       let vc = RepoDetailViewController(name: viewModel.repositories[indexPath.row].name)
-        navigationController?.pushViewController(vc, animated: true)
+//       let vc = RepoDetailViewController(name: viewModel.repositories[indexPath.row].name)
+//        navigationController?.pushViewController(vc, animated: true)
     }
 }

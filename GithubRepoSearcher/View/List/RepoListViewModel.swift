@@ -8,11 +8,37 @@
 import Foundation
 import Combine
 
-final class RepoListViewModel {
-    private var cancellables = Set<AnyCancellable>()
+protocol RepoListViewModelInput {
+    var searchText: PassthroughSubject<String, Never> { get }
+}
 
-    @Published var repositories = [Repository]()
-    @Published var searchText = ""
+protocol RepoListViewModelOutput {
+    var repositories: PassthroughSubject<[Repository], Never> { get }
+    var effect: PassthroughSubject<RepoListViewModelEffect, Never> { get }
+}
+
+protocol RepoListViewModelType {
+    var inputs: RepoListViewModelInput { get }
+    var outputs: RepoListViewModelOutput { get }
+}
+
+final class RepoListViewModel: RepoListViewModelType, RepoListViewModelInput, RepoListViewModelOutput {
+
+    // MARK: - RepoListViewModelInput
+
+    var searchText = PassthroughSubject<String, Never>()
+
+    // MARK: - RepoListViewModelOutput
+
+    var repositories = PassthroughSubject<[Repository], Never>()
+    var effect = PassthroughSubject<RepoListViewModelEffect, Never>()
+
+    // MARK: - RepoListViewModelType
+
+    var inputs: RepoListViewModelInput { return self }
+    var outputs: RepoListViewModelOutput { return self }
+
+    private var cancellables = Set<AnyCancellable>()
 
     private let useCase: SearchRepositoryUseCase
 
@@ -21,7 +47,7 @@ final class RepoListViewModel {
     }
 
     func onAppear() {
-        $searchText
+        searchText
             .dropFirst() // ""を検索に入れたくないため
             .sink {[weak self] word in
                 self?.requestRepository(word: word)
@@ -37,13 +63,20 @@ final class RepoListViewModel {
                 case .finished:
                     print("RepoListViewModel: requestRepository: success")
                 case .failure(let error):
-                    self.repositories = []
+                    self.repositories.send([])
+                    self.outputs.effect.send(.error)
                     print("RepoListViewModel: requestRepository: failure", error.localizedDescription)
                 }
             } receiveValue: {[weak self] value in
                 guard let self = self else { return }
-                self.repositories = value.items
+                self.repositories.send(value.items)
             }
             .store(in: &cancellables)
     }
 }
+
+enum RepoListViewModelEffect {
+    case error
+}
+
+
